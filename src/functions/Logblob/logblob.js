@@ -2,14 +2,16 @@ import { BlobServiceClient } from "@azure/storage-blob";
 import { Buffer } from "buffer";
 import uniqid from 'uniqid';
 
+
+
 // Conexión a Azure Blob Storage
-const AZURE_STORAGE_CONNECTION_STRING =
-  "DefaultEndpointsProtocol=https;AccountName=almacenamientodpp;AccountKey=8f+yUYVXkoyXidFLh+hWx7sWCxc6zQWkMBhIzFSolGA6jQGm0NOvxgqKjzrguzMXT7SZPvG3m7wl+ASt/pJM0A==;EndpointSuffix=core.windows.net"; 
-const containerName = "fn365documentlog"; // Nombre del contenedor en Blob Storage
+const AZURE_STORAGE_CONNECTION_STRING = process.env.AZURE_STORAGE_CONNECTION_STRING;
+const containerName = process.env.CONTAINER_NAME_BLOB;
 
 // Función para crear un archivo (subir un blob)
 const createBlob = async (json) => {
   try {
+  
     // console.log(json);
     const blobServiceClient = BlobServiceClient.fromConnectionString(AZURE_STORAGE_CONNECTION_STRING);
     const containerClient = blobServiceClient.getContainerClient(containerName);
