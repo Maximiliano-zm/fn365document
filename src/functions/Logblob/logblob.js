@@ -1,6 +1,8 @@
 import { BlobServiceClient } from "@azure/storage-blob";
 import { Buffer } from "buffer";
 import uniqid from "uniqid";
+import dotenv from 'dotenv';
+dotenv.config();
 
 // Conexión a Azure Blob Storage
 const AZURE_STORAGE_CONNECTION_STRING =
